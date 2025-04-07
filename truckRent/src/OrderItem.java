@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+// To co zakomentowane moze sie przydac - nie usuwac
 public class OrderItem {
     ArrayList<Vehicle> vehicles = new ArrayList<>(); //arrayList bo zestaw to naczepa + ciągnik np.
     LocalDate orderDate; // data przejazdu
@@ -8,8 +8,8 @@ public class OrderItem {
     String toWhere;  // do jakiego miasta
     int distance; // dystanca z-do
     double orderItemCost;
-    ArrayList<Licenses> neededLicenses;
-    ArrayList<SpecialLicenses> neededSpecialLicenses;
+   // ArrayList<Licenses> neededLicenses;
+   // ArrayList<SpecialLicenses> neededSpecialLicenses;
     Driver driver;
 
     public OrderItem(String fromWhere, String toWhere, int distance,
@@ -21,13 +21,10 @@ public class OrderItem {
         this.toWhere = toWhere;
         this.distance = distance;
         orderItemCost = calculateItemCost();
-        this.neededLicenses = neededLicenses;
-        this.neededSpecialLicenses = neededSpecialLicenses;
+        //this.neededLicenses = neededLicenses;
+        //this.neededSpecialLicenses = neededSpecialLicenses;
         this.driver = driver;
-        if (!checkDriver())
-        {
-            throw new IllegalArgumentException("Driver does not have needed licenses");
-        }
+
 
     }
 
@@ -46,9 +43,10 @@ public class OrderItem {
         for (Vehicle vehicle : vehicles) {
             x += vehicle.getPrice();
         }
-        return x;
+        return x*distance;
     }
 
+    /*
     public boolean checkDriver() // checking if Driver has needed licences
     {
         for(Licenses license : neededLicenses) {
@@ -65,6 +63,7 @@ public class OrderItem {
         }
         return true;
     }
+     */
 }
 
 
