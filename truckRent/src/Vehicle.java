@@ -1,5 +1,15 @@
 public class Vehicle {
     private double price;
+
+    public double getPrice()
+    {
+        return price;
+    }
+    public void setPrice(Double price)
+    {
+        this.price = price;
+    }
+
     private String carRegistrationNumber;
     private String brand;
     private String model;
