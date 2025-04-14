@@ -9,11 +9,23 @@ public class Main {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             System.out.println("Połączenie z MS SQL nawiązane!");
 
-            // Przekazujemy połączenie do innej klasy
+
             DodawanieDanych.dodajZamowienie(conn);
+            DodawanieDanych.wyswietlTabele(conn, "Zamowienie");
+
+
+
+
 
         } catch (SQLException e) {
             System.err.println("Błąd SQL: " + e.getMessage());
         }
+
+
+
+
+
     }
+
+
 }

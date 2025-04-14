@@ -17,4 +17,36 @@ public class DodawanieDanych {
             System.err.println("❌ Błąd podczas dodawania zamówienia: " + e.getMessage());
         }
     }
+
+    public static void wyswietlTabele(Connection conn, String nazwaTabeli) {
+        String sql = "SELECT * FROM " + nazwaTabeli;
+
+        try (
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            ResultSetMetaData meta = rs.getMetaData();
+            int kolumny = meta.getColumnCount();
+
+            System.out.println("📋 Wyniki z tabeli: " + nazwaTabeli);
+            System.out.println("------------------------------------------");
+
+            // Wypisz nagłówki kolumn
+            for (int i = 1; i <= kolumny; i++) {
+                System.out.print(meta.getColumnName(i) + "\t");
+            }
+            System.out.println();
+
+            // Wypisz wiersze
+            while (rs.next()) {
+                for (int i = 1; i <= kolumny; i++) {
+                    System.out.print(rs.getString(i) + "\t");
+                }
+                System.out.println();
+            }
+
+        } catch (SQLException e) {
+            System.err.println("❌ Błąd podczas SELECT z tabeli '" + nazwaTabeli + "': " + e.getMessage());
+        }
+    }
 }
